@@ -61,6 +61,7 @@ import net.runelite.api.widgets.WidgetID;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.OverlayMenuClicked;
 import net.runelite.client.game.NPCManager;
 import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.plugins.Plugin;
@@ -484,6 +485,16 @@ public class XpTrackerPlugin extends Plugin
 		menuEntry.setType(MenuAction.RUNELITE.getId());
 
 		client.setMenuEntries(menuEntries);
+	}
+
+	@Subscribe
+	public void onOverlayMenuClicked(OverlayMenuClicked event)
+	{
+		if (event.getEntry().getMenuAction() == MenuAction.RUNELITE_OVERLAY &&
+			event.getEntry().getOption().equals("Remove"))
+		{
+			overlayManager.remove(event.getOverlay());
+		}
 	}
 
 	@Subscribe

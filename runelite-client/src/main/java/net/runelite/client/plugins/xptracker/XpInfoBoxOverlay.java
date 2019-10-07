@@ -33,6 +33,7 @@ import java.awt.image.BufferedImage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import net.runelite.api.Experience;
+import net.runelite.api.MenuAction;
 import net.runelite.api.Skill;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.SkillColor;
@@ -82,6 +83,8 @@ class XpInfoBoxOverlay extends Overlay
 		iconXpSplitPanel.setBorder(XP_AND_ICON_COMPONENT_BORDER);
 		iconXpSplitPanel.setBackgroundColor(null);
 		iconXpSplitPanel.setPreferredSize(new Dimension(PANEL_PREFERRED_WIDTH, 0));
+
+		getMenuEntries().add(new OverlayMenuEntry(MenuAction.RUNELITE_OVERLAY, "Remove", "XP Tracker"));
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "XP Tracker overlay"));
 	}
 

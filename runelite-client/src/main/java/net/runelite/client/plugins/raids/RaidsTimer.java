@@ -29,6 +29,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import lombok.Getter;
 import lombok.Setter;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.ui.overlay.infobox.InfoBox;
@@ -37,6 +38,7 @@ public class RaidsTimer extends InfoBox
 {
 	private final Instant startTime;
 	private Instant floorTime;
+	@Getter
 	private LocalTime time;
 	private LocalTime firstFloorTime;
 	private LocalTime secondFloorTime;

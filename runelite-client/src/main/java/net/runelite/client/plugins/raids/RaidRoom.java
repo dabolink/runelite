@@ -27,6 +27,7 @@ package net.runelite.client.plugins.raids;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.api.ItemID;
 import net.runelite.api.Tile;
 
 public class RaidRoom
@@ -67,18 +68,21 @@ public class RaidRoom
 	@AllArgsConstructor
 	public enum Boss
 	{
-		TEKTON("Tekton"),
-		MUTTADILES("Muttadiles"),
-		GUARDIANS("Guardians"),
-		VESPULA("Vespula"),
-		SHAMANS("Shamans"),
-		VASA("Vasa"),
-		VANGUARDS("Vanguards"),
-		MYSTICS("Mystics"),
-		UNKNOWN("Unknown");
+		TEKTON("Tekton", ItemID.TEKTINY),
+		MUTTADILES("Muttadiles", ItemID.PUPPADILE),
+		GUARDIANS("Guardians", ItemID.DRAGON_PICKAXE),
+		VESPULA("Vespula", ItemID.VESPINA),
+		SHAMANS("Shamans", ItemID.SHAYZIEN_HELM_5),
+		VASA("Vasa", ItemID.VASA_MINIRIO),
+		VANGUARDS("Vanguards", ItemID.VANGUARD),
+		MYSTICS("Mystics", ItemID.SALVE_AMULETEI),
+		UNKNOWN("Unknown", ItemID.CAKE_OF_GUIDANCE);
 
 		@Getter
 		private final String name;
+
+		@Getter
+		private final int itemID;
 
 		public static Boss fromString(String name)
 		{
@@ -97,14 +101,17 @@ public class RaidRoom
 	@AllArgsConstructor
 	public enum Puzzle
 	{
-		CRABS("Crabs"),
-		ICE_DEMON("Ice Demon"),
-		TIGHTROPE("Tightrope"),
-		THIEVING("Thieving"),
-		UNKNOWN("Unknown");
+		CRABS("Crabs", ItemID.CRAB_CLAW),
+		ICE_DEMON("Ice Demon", ItemID.ICE_DIAMOND),
+		TIGHTROPE("Tightrope", ItemID.ROPE),
+		THIEVING("Thieving", ItemID.LOCKPICK),
+		UNKNOWN("Unknown", ItemID.CAKE_OF_GUIDANCE);
 
 		@Getter
 		private final String name;
+
+		@Getter
+		private final int itemID;
 
 		public static Puzzle fromString(String name)
 		{

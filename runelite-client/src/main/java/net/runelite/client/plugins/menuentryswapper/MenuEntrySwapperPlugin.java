@@ -593,15 +593,17 @@ public class MenuEntrySwapperPlugin extends Plugin
 			final int widgetGroupId = WidgetInfo.TO_GROUP(menuEntryAdded.getActionParam1());
 			final int opId = widgetGroupId == WidgetID.DEPOSIT_BOX_GROUP_ID ? shiftDepositMode.getIdentifierDepositBox()
 				: widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_INVENTORY_GROUP_ID ? shiftDepositMode.getIdentifierChambersStorageUnit()
+				: widgetGroupId == WidgetID.SEED_VAULT_INVENTORY_GROUP_ID ? shiftDepositMode.getIdentifierSeedVault()
 				: shiftDepositMode.getIdentifier();
 			final int actionId = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY.getId() : MenuAction.CC_OP.getId();
 			bankModeSwap(actionId, opId);
 		}
 
 		// Swap to shift-click withdraw behavior
-		// Deposit- op 1 is the current withdraw amount 1/5/10/x
+		// Withdraw- op 1 is the current withdraw amount 1/5/10/x
 		if (shiftModifier() && config.bankWithdrawShiftClick() != ShiftWithdrawMode.OFF
-			&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && menuEntryAdded.getIdentifier() == 1
+			&& (menuEntryAdded.getType() == MenuAction.CC_OP.getId() || menuEntryAdded.getType() == MenuAction.CC_OP_LOW_PRIORITY.getId())
+			&& (menuEntryAdded.getIdentifier() == 1 || menuEntryAdded.getIdentifier() == 2)
 			&& menuEntryAdded.getOption().startsWith("Withdraw"))
 		{
 			ShiftWithdrawMode shiftWithdrawMode = config.bankWithdrawShiftClick();
@@ -611,6 +613,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 			{
 				actionId = MenuAction.CC_OP.getId();
 				opId = shiftWithdrawMode.getIdentifierChambersStorageUnit();
+			}
+			else if (widgetGroupId == WidgetID.SEED_VAULT_GROUP_ID)
+			{
+				actionId = shiftWithdrawMode.getMenuAction().getId();
+				opId = shiftWithdrawMode.getIdentifierSeedVault();
 			}
 			else
 			{

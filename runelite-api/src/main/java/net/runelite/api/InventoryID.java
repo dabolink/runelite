@@ -92,7 +92,11 @@ public enum InventoryID
 	/**
 	 * Player inventory when accessing group ironman shared storage
 	 */
-	GROUP_STORAGE_INV(660);
+	GROUP_STORAGE_INV(660),
+	/**
+	 * Looting bag inventory
+	 */
+	LOOTING_BAG(516);
 
 	private final int id;
 

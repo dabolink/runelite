@@ -189,7 +189,7 @@ public class TabInterface
 		final BankSearch bankSearch,
 		final ChatboxItemSearch searchProvider,
 		final ChatMessageManager chatMessageManager
-		)
+	)
 	{
 		this.client = client;
 		this.clientThread = clientThread;
@@ -941,7 +941,7 @@ public class TabInterface
 		if (client.getMouseCurrentButton() == 0)
 		{
 			if (!tagTabActive
-				&& draggedWidget.getId() == InterfaceID.Bankmain.ITEMS
+				&& List.of(InterfaceID.Bankmain.ITEMS, InterfaceID.Bankside.ITEMS).contains(draggedWidget.getId())
 				&& draggedWidget.getItemId() != -1
 				&& draggedOn.getParent() == parent
 				&& draggedOn.getIndex() >= TAGTAB_CHILD_OFFSET) // skip buttons
@@ -1238,9 +1238,9 @@ public class TabInterface
 
 		// Keep the tab layer height a multiple of the tab heights
 		int tabLayerHeight = parent.getHeight()
-				- scrollComponent.getOriginalY()
-				- BUTTON_HEIGHT // the bottom button
-				- offset; // incinerator etc.
+			- scrollComponent.getOriginalY()
+			- BUTTON_HEIGHT // the bottom button
+			- offset; // incinerator etc.
 		tabCount = tabLayerHeight / (TAB_HEIGHT + MARGIN);
 		scrollComponent.setOriginalHeight(tabCount * (TAB_HEIGHT + MARGIN));
 
@@ -1298,8 +1298,8 @@ public class TabInterface
 		y += MARGIN;
 
 		for (int i = tabScrollOffset;
-			i < tabScrollOffset + tabCount && i * 2 + 1 < children.length - TAGTAB_CHILD_OFFSET && children[TAGTAB_CHILD_OFFSET + i * 2] != null;
-			++i)
+			 i < tabScrollOffset + tabCount && i * 2 + 1 < children.length - TAGTAB_CHILD_OFFSET && children[TAGTAB_CHILD_OFFSET + i * 2] != null;
+			 ++i)
 		{
 			Widget background = children[TAGTAB_CHILD_OFFSET + i * 2];
 			background.setOriginalY(y);
